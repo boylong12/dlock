@@ -5,6 +5,7 @@ import com.ldcr.dlock.aop.DlockInterceptor;
 import com.ldcr.dlock.handler.LockHandler;
 import com.ldcr.dlock.util.SpringContextTool;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2020/1/6 18:15
  */
 @Configuration
+@ConditionalOnProperty(prefix = "com.ldcr.dlock", name = "enable", havingValue = "true")
 public class DlockAutoConfiguration {
 
     @Bean

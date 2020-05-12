@@ -32,7 +32,7 @@
         </dependency>
         <dependency>
             <groupId>com.ldcr</groupId>
-            <artifactId>spring-boot-starter-dlock</artifactId>
+            <artifactId>dlock-spring-boot-starter</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

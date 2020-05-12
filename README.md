@@ -6,13 +6,13 @@
 + 第一步 引入依赖的starter
    + gradle：
    ```
-   compile ("com.ldcr.dlock:spring-boot-starter-dlock:0.0.1")
+   compile ("com.ldcr:spring-boot-starter-dlock:0.0.1")
    ```
    + maven:
    ```
   <dependency>
-       <groupId>com.ldcr.dlock</groupId>
-       <artifactId>spring-boot-starter-dlock</artifactId>
+       <groupId>com.ldcr</groupId>
+       <artifactId>dlock-spring-boot-starter</artifactId>
        <version>0.0.1</version>
    </dependency>
    ```

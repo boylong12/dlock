@@ -20,15 +20,6 @@ import static org.springframework.util.Assert.notNull;
 public class LockHandler extends BaseLockHandler {
     private static final String PROCESS_ID = LockUtil.getLocalMAC() + LockUtil.getJvmPid();
 
-    public LockHandler() {
-        log.info("dlock started");
-        System.out.println("dlock started");
-    }
-
-    public void init() {
-        log.info("dlock init");
-    }
-
     /**
      * 加锁
      * timeout和maxRetry互斥，两者只会有一个生效,优先级：maxRetry大于timeout

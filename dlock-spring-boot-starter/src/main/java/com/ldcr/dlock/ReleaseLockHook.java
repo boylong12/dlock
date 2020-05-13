@@ -2,7 +2,7 @@ package com.ldcr.dlock;
 
 import com.ldcr.dlock.handler.LockHandler;
 import com.ldcr.dlock.util.ConcurrentHashSet;
-import com.ldcr.dlock.util.SpringContextTool;
+import com.ldcr.dlock.util.DLockSpringContextTool;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Set;
@@ -22,7 +22,7 @@ public class ReleaseLockHook {
         log.info("register ReleaseLockHook");
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             log.warn("auto release Dlock--start={}", set.toString());
-            LockHandler lockHandler = SpringContextTool.getApplicationContext().getBean(LockHandler.class);
+            LockHandler lockHandler = DLockSpringContextTool.getApplicationContext().getBean(LockHandler.class);
             set.parallelStream().forEach(lockHandler::releaseLock);
             log.warn("auto release Dlock--end={}", set.toString());
         }));

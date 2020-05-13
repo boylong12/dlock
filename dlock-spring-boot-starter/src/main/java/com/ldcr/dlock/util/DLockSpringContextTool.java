@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationContextAware;
  * @author zhanghonglong
  * @date 2019/10/11 13:55
  */
-public class SpringContextTool implements ApplicationContextAware {
+public class DLockSpringContextTool implements ApplicationContextAware {
     private static ApplicationContext context = null;
 
     @Override

@@ -1,5 +1,6 @@
 package com.ldcr.dlock.aop;
 
+import com.ldcr.dlock.DLockInfo;
 import com.ldcr.dlock.annotaion.Dlock;
 import com.ldcr.dlock.handler.LockHandler;
 import com.ldcr.dlock.util.LockKeyGenerator;
@@ -45,16 +46,16 @@ public class DlockInterceptor implements MethodInterceptor {
             //方法上没有Dlock注解，执行具体业务逻辑
             return methodInvocation.proceed();
         } else {
-            com.ldcr.dlock.LockInfo lockInfo = null;
+            DLockInfo dLockInfo = null;
             try {
                 String key = lockKeyGenerator.getKey(methodInvocation, dlock);
-                lockInfo = lockHandler.lock(key, dlock.expire(), dlock.timeout(), dlock.maxRetry());
-                log.debug("{}", lockInfo);
+                dLockInfo = lockHandler.lock(key, dlock.expire(), dlock.timeout(), dlock.maxRetry());
+                log.debug("{}", dLockInfo);
                 // 加锁成功，执行具体业务逻辑
                 return methodInvocation.proceed();
             } finally {
-                if (null != lockInfo) {
-                    lockHandler.releaseLock(lockInfo);
+                if (null != dLockInfo) {
+                    lockHandler.releaseLock(dLockInfo);
                 }
             }
         }

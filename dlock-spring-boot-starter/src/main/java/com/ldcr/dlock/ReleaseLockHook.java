@@ -16,7 +16,7 @@ import java.util.Set;
  */
 @Slf4j
 public class ReleaseLockHook {
-    private static final Set<LockInfo> set = new ConcurrentHashSet<>(16);
+    private static final Set<DLockInfo> set = new ConcurrentHashSet<>(16);
 
     static {
         log.info("register ReleaseLockHook");
@@ -28,13 +28,13 @@ public class ReleaseLockHook {
         }));
     }
 
-    public static boolean add(LockInfo lockInfo) {
-        return set.add(lockInfo);
+    public static boolean add(DLockInfo dLockInfo) {
+        return set.add(dLockInfo);
     }
 
-    public static boolean remove(LockInfo lockInfo) {
+    public static boolean remove(DLockInfo dLockInfo) {
         try {
-            return set.remove(lockInfo);
+            return set.remove(dLockInfo);
         } catch (Exception e) {
             log.error("", e);
             return false;

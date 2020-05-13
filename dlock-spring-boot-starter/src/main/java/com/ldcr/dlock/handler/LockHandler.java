@@ -1,6 +1,6 @@
 package com.ldcr.dlock.handler;
 
-import com.ldcr.dlock.LockInfo;
+import com.ldcr.dlock.DLockInfo;
 import com.ldcr.dlock.exception.DlockException;
 import com.ldcr.dlock.exception.DlockOverCountException;
 import com.ldcr.dlock.exception.DlockTimeoutException;
@@ -20,6 +20,15 @@ import static org.springframework.util.Assert.notNull;
 public class LockHandler extends BaseLockHandler {
     private static final String PROCESS_ID = LockUtil.getLocalMAC() + LockUtil.getJvmPid();
 
+    public LockHandler() {
+        log.info("dlock started");
+        System.out.println("dlock started");
+    }
+
+    public void init() {
+        log.info("dlock init");
+    }
+
     /**
      * 加锁
      * timeout和maxRetry互斥，两者只会有一个生效,优先级：maxRetry大于timeout
@@ -32,7 +41,7 @@ public class LockHandler extends BaseLockHandler {
      * @return 锁信息
      * @throws InterruptedException
      */
-    public LockInfo lock(String key, long expire, long timeout, int maxRetry) throws InterruptedException {
+    public DLockInfo lock(String key, long expire, long timeout, int maxRetry) throws InterruptedException {
         notNull(key, "'key' must not be null");
         long start = System.currentTimeMillis();
         int retryCount = 0;
@@ -42,7 +51,7 @@ public class LockHandler extends BaseLockHandler {
                 boolean result = lock(key, value, expire);
                 retryCount++;
                 if (result) {
-                    return new LockInfo(key, value, expire, timeout, maxRetry, System.currentTimeMillis() - start, retryCount);
+                    return new DLockInfo(key, value, expire, timeout, maxRetry, System.currentTimeMillis() - start, retryCount);
                 }
                 if (retryCount < maxRetry) {
                     Thread.sleep(50);
@@ -56,7 +65,7 @@ public class LockHandler extends BaseLockHandler {
                 boolean result = lock(key, value, expire);
                 retryCount++;
                 if (result) {
-                    return new LockInfo(key, value, expire, timeout, maxRetry, System.currentTimeMillis() - start, retryCount);
+                    return new DLockInfo(key, value, expire, timeout, maxRetry, System.currentTimeMillis() - start, retryCount);
                 }
                 if (System.currentTimeMillis() - start < timeout) {
                     Thread.sleep(50);
@@ -70,11 +79,11 @@ public class LockHandler extends BaseLockHandler {
     /**
      * 释放锁
      *
-     * @param lockInfo
+     * @param dLockInfo
      * @return
      */
-    public boolean releaseLock(LockInfo lockInfo) {
-        notNull(lockInfo, "'lockInfo' must not be null");
-        return releaseLock(lockInfo.getKey(), lockInfo.getValue());
+    public boolean releaseLock(DLockInfo dLockInfo) {
+        notNull(dLockInfo, "'lockInfo' must not be null");
+        return releaseLock(dLockInfo.getKey(), dLockInfo.getValue());
     }
 }

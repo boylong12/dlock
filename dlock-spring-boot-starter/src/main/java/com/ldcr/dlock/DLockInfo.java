@@ -11,7 +11,7 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @ToString
-public class LockInfo {
+public class DLockInfo {
 
     /**
      * 锁名称
@@ -48,7 +48,7 @@ public class LockInfo {
      */
     private int retryCount;
 
-    public LockInfo(String key, String value) {
+    public DLockInfo(String key, String value) {
         this.key = key;
         this.value = value;
     }

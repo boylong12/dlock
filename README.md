@@ -6,7 +6,7 @@
 + 第一步 引入依赖的starter
    + gradle：
    ```
-   compile ("com.ldcr:spring-boot-starter-dlock:0.0.1")
+   compile ("com.ldcr:dlock-spring-boot-starter:0.0.1")
    ```
    + maven:
    ```

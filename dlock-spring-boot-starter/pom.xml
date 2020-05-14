@@ -6,7 +6,7 @@
     <parent>
         <artifactId>dlock</artifactId>
         <groupId>com.ldcr</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>dlock-spring-boot-starter</artifactId>
@@ -62,6 +62,7 @@
                             因为要把第三方jar放到lib目录下，
                             所以classpath的前缀是lib/-->
                             <classpathPrefix>lib/</classpathPrefix>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                         </manifest>
                     </archive>
                     <!--过滤掉不希望包含在jar中的文件-->
@@ -71,7 +72,18 @@
                     </excludes>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <resources>
             <resource>

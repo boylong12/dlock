@@ -4,6 +4,7 @@ import com.ldcr.dlock.annotaion.DlockAnnotationAdvisor;
 import com.ldcr.dlock.aop.DlockInterceptor;
 import com.ldcr.dlock.handler.LockHandler;
 import com.ldcr.dlock.util.DLockSpringContextTool;
+import com.ldcr.dlock.util.DlockVersion;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -49,11 +50,12 @@ public class DlockAutoConfiguration {
     public DlockInterceptor dlockInterceptor(LockHandler lockHandler) {
         DlockInterceptor dlockInterceptor = new DlockInterceptor();
         dlockInterceptor.setLockHandler(lockHandler);
-        log.info("   ___   __   ____   _____ __ __");
-        log.info("  / _ \\ / /  / __ \\ / ___// //_/");
-        log.info(" / // // /__/ /_/ // /__ / ,<   ");
-        log.info("/____//____/\\____/ \\___//_/|_|  ");
-        log.info("started dlock");
+        System.out.println("   ___   __   ____   _____ __ __       ___   ____   ____  ______\n"
+            + "  / _ \\ / /  / __ \\ / ___// //_/      / _ ) / __ \\ / __ \\/_  __/\n"
+            + " / // // /__/ /_/ // /__ / ,<        / _  |/ /_/ // /_/ / / /   \n"
+            + "/____//____/\\____/ \\___//_/|_|      /____/ \\____/ \\____/ /_/        dlock boot(version:"
+            + DlockVersion.getVersion() + ")");
+        log.info("started dlock boot");
         return dlockInterceptor;
     }
 }

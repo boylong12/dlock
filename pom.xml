@@ -5,7 +5,7 @@
     <packaging>pom</packaging>
     <groupId>com.ldcr</groupId>
     <artifactId>dlock</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>dlock</name>
     <description>分布式锁starter</description>
     <developers>

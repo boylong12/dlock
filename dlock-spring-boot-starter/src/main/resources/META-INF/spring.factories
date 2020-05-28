@@ -1,3 +1,4 @@
 #配置自定义Starter的自动化配置
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.ldcr.dlock.autoconfigure.DlockAutoConfiguration
+com.ldcr.dlock.autoconfigure.DlockAutoConfigurationOnProperty,\
+com.ldcr.dlock.autoconfigure.DlockGracefulReleaseAutoConfigurationOnProperty

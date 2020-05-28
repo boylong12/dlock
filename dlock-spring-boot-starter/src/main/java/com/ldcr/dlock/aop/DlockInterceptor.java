@@ -3,6 +3,7 @@ package com.ldcr.dlock.aop;
 import com.ldcr.dlock.DLockInfo;
 import com.ldcr.dlock.annotaion.Dlock;
 import com.ldcr.dlock.handler.LockHandler;
+import com.ldcr.dlock.util.DlockVersion;
 import com.ldcr.dlock.util.LockKeyGenerator;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,15 @@ public class DlockInterceptor implements MethodInterceptor {
     private LockHandler lockHandler;
 
     private final LockKeyGenerator lockKeyGenerator = new LockKeyGenerator();
+
+    public DlockInterceptor() {
+        System.out.println("   ___   __   ____   _____ __ __       ___   ____   ____  ______\n"
+            + "  / _ \\ / /  / __ \\ / ___// //_/      / _ ) / __ \\ / __ \\/_  __/\n"
+            + " / // // /__/ /_/ // /__ / ,<        / _  |/ /_/ // /_/ / / /   \n"
+            + "/____//____/\\____/ \\___//_/|_|      /____/ \\____/ \\____/ /_/        dlock boot(version:"
+            + DlockVersion.getVersion() + ")");
+        log.info("started dlock boot");
+    }
 
     @Override
     public Object invoke(MethodInvocation methodInvocation) throws Throwable {

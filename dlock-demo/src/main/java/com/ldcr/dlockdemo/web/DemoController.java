@@ -20,7 +20,8 @@ public class DemoController {
 
     @GetMapping("/say-hello")
     public String sayHello(@RequestParam String userId) {
-        return demoService.sayHello(userId);
+        String dd = demoService.sayHello(userId);
+        return dd;
     }
 
     @GetMapping("/say-hello2")

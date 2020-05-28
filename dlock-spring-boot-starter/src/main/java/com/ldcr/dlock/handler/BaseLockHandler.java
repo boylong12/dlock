@@ -1,7 +1,7 @@
 package com.ldcr.dlock.handler;
 
 import com.ldcr.dlock.DLockInfo;
-import com.ldcr.dlock.ReleaseLockHook;
+import com.ldcr.dlock.util.Singleton;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -39,7 +39,7 @@ public abstract class BaseLockHandler {
         Boolean result = template.opsForValue().setIfAbsent(key, value, expireTime, TimeUnit.MILLISECONDS);
         log.debug("addLock result={},key={},value={},expireTime={}", result, key, value, expireTime);
         if (result) {
-            ReleaseLockHook.add(new DLockInfo(key, value));
+            Singleton.getSingletonDLockInfoSet().add(new DLockInfo(key, value));
         }
         return result;
     }
@@ -64,7 +64,7 @@ public abstract class BaseLockHandler {
             Collections.singletonList(key), value);
         log.debug("releaseLock result={},key={},value={}", result, key, value);
         if (result) {
-            ReleaseLockHook.remove(new DLockInfo(key, value));
+            Singleton.getSingletonDLockInfoSet().remove(new DLockInfo(key, value));
         }
         return result;
     }

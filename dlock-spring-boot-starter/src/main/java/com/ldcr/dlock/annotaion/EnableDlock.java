@@ -19,7 +19,7 @@ import java.lang.annotation.*;
 public @interface EnableDlock {
 
     /**
-     * 关机时优雅释放锁
+     * 关机时优雅释放锁标识
      * 建议在不支持优雅关机的情况下打开
      * 在支持优雅关机的情况下慎重打开。因为有可能会提前释放锁
      * springboot从2.3.0.RELEASE开始支持优雅关机

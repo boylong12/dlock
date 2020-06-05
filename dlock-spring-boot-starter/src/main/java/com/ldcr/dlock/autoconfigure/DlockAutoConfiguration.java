@@ -1,5 +1,6 @@
 package com.ldcr.dlock.autoconfigure;
 
+import com.ldcr.dlock.DlockBoot;
 import com.ldcr.dlock.annotaion.DlockAnnotationAdvisor;
 import com.ldcr.dlock.aop.DlockInterceptor;
 import com.ldcr.dlock.handler.LockHandler;
@@ -10,6 +11,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.io.ResourceLoader;
 
 /**
  * 分布式锁的自动配置器
@@ -48,5 +51,12 @@ public class DlockAutoConfiguration {
         DlockInterceptor dlockInterceptor = new DlockInterceptor();
         dlockInterceptor.setLockHandler(lockHandler);
         return dlockInterceptor;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public DlockBoot dlockBoot(ResourceLoader resourceLoader, ConfigurableEnvironment environment) {
+        DlockBoot dlockBoot = new DlockBoot(resourceLoader, environment);
+        return dlockBoot;
     }
 }

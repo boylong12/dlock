@@ -35,7 +35,7 @@ public abstract class BaseLockHandler {
      * @param expireTime 过期时间，过期后自动释放锁 单位：毫秒
      * @return
      */
-    public boolean lock(String key, String value, long expireTime) {
+    public boolean tryLock(String key, String value, long expireTime) {
         Boolean result = template.opsForValue().setIfAbsent(key, value, expireTime, TimeUnit.MILLISECONDS);
         log.debug("addLock result={},key={},value={},expireTime={}", result, key, value, expireTime);
         if (result) {

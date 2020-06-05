@@ -39,7 +39,7 @@ public class LockHandler extends BaseLockHandler {
         String value = PROCESS_ID + Thread.currentThread().getId();
         if (maxRetry > 0) {
             while (retryCount < maxRetry) {
-                boolean result = lock(key, value, expire);
+                boolean result = tryLock(key, value, expire);
                 retryCount++;
                 if (result) {
                     return new DLockInfo(key, value, expire, timeout, maxRetry, System.currentTimeMillis() - start, retryCount);
@@ -53,7 +53,7 @@ public class LockHandler extends BaseLockHandler {
         } else {
             Assert.isTrue(timeout > 0, "'timeout' must more than 0");
             while (System.currentTimeMillis() - start < timeout) {
-                boolean result = lock(key, value, expire);
+                boolean result = tryLock(key, value, expire);
                 retryCount++;
                 if (result) {
                     return new DLockInfo(key, value, expire, timeout, maxRetry, System.currentTimeMillis() - start, retryCount);

@@ -33,7 +33,7 @@ public String sayHello(String userId) {
 }
 ```
 + 第四步 配置redis。
-### 使用demo  [dlock-demo](https://github.com/boylong12/dlock/tree/master/dlock-demo)
+### 使用demo  [dlock-demo](dlock-demo)
 ### 关机时优雅释放锁的说明
 + 开启方式（两种方式任选）
   + 通过注解，将```@EnableDlock(gracefulRelease = true)```注解标注在启动类上

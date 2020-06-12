@@ -3,17 +3,17 @@
 >2.基于redis实现的非公平锁
 ---
 #### 使用步骤：
-+ 第一步 引入依赖的starter（目前还没有上传maven中央仓库，需要手动打包）
++ 第一步 引入依赖的starter（已上传maven中央仓库）
    + gradle：
    ```
-   compile ("com.ldcr:dlock-spring-boot-starter:0.0.1")
+   compile ("com.github.boylong12:dlock-spring-boot-starter:${dlcok.version}")
    ```
    + maven:
    ```
   <dependency>
-       <groupId>com.ldcr</groupId>
+       <groupId>com.github.boylong12</groupId>
        <artifactId>dlock-spring-boot-starter</artifactId>
-       <version>0.0.1</version>
+       <version>${dlcok.version}</version>
    </dependency>
    ```
 + 第二步 启动dlock（两种方式任选）

@@ -7,7 +7,7 @@
 
     <groupId>com.github.boylong12</groupId>
     <artifactId>dlock-spring-boot-starter</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <packaging>jar</packaging>
     <name>dlock-spring-boot-starter</name>
 
@@ -25,7 +25,7 @@
         <connection>scm:git@github.com:boylong12/dlock.git</connection>
         <developerConnection>scm:git@github.com:boylong12/dlock.git</developerConnection>
         <url>git@github.com:boylong12/dlock.git</url>
-        <tag>v0.0.2.release</tag>
+        <tag>v0.0.3.release</tag>
     </scm>
     <developers>
         <developer>

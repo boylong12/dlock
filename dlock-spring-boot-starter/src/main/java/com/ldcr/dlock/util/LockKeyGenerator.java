@@ -64,8 +64,11 @@ public class LockKeyGenerator {
         List<String> definitionKeyList = new ArrayList<>(definitionKeys.length);
         for (String definitionKey : definitionKeys) {
             if (definitionKey != null && !definitionKey.isEmpty()) {
-                String key = PARSER.parseExpression(definitionKey).getValue(context).toString();
-                definitionKeyList.add(key);
+                Object obj = PARSER.parseExpression(definitionKey).getValue(context);
+                if (obj != null) {
+                    String key = obj.toString();
+                    definitionKeyList.add(key);
+                }
             }
         }
         return StringUtils.collectionToDelimitedString(definitionKeyList, "-", "", "");

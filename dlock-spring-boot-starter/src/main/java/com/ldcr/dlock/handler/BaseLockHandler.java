@@ -46,8 +46,9 @@ public abstract class BaseLockHandler {
 
     /**
      * 解锁：
-     * 匹配随机数，删除redis上的特定的key数据，
-     * 要保证获取数据，判断一致以及删除数据三个操作是原子性
+     * 1 需要验证value是和加锁的一致才删除key。
+     * 这是避免了一种情况：假设A获取了锁，过期时间30s，此时35s之后，锁已经自动释放了，A去释放锁，但是此时可能B获取了锁。A客户端就不能删除B的锁了。
+     * 2 删除redis上的特定的key数据，要保证获取数据，判断一致以及删除数据三个操作是原子性
      * 执行如下lua脚本：
      * if redis.call('get', KEYS[1]) == ARGV[1] then
      * return redis.call('del', KEYS[1])
